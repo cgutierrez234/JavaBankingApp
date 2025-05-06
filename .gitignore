@@ -1,0 +1,5 @@
+# Ignore the vscode settings
+.vscode/
+
+# Ignore class Files
+.class

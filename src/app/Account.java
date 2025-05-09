@@ -17,7 +17,9 @@ public abstract class Account {
         this.blockedFromWithdrawal = blockedFromWithdrawal;
     }
 
-    // Getters
+    /*--------------------------------------------------------------------------------
+                                       GETTERS
+    --------------------------------------------------------------------------------*/
 
     public String getAccountNumber() {
         return accountNumber;
@@ -39,7 +41,9 @@ public abstract class Account {
         return blockedFromWithdrawal;
     }
 
-    // Setters
+    /*--------------------------------------------------------------------------------
+                                       SETTERS
+    --------------------------------------------------------------------------------*/
 
     public void setBalance(double balance) {
         this.balance = balance;
@@ -49,16 +53,17 @@ public abstract class Account {
         this.blockedFromWithdrawal = blockedFromWithdrawal;
     }
 
-    // METHODS . . . . . 
-
-    // Regular methods. Deposit 
+    /*--------------------------------------------------------------------------------
+                                       METHODS
+    --------------------------------------------------------------------------------*/
 
     public void deposit(double amount) {
-        if(balance > 0) {
-            balance += amount;
-        } else {
+        if(amount <= 0) {
             throw new IllegalArgumentException("Deposit amount must be positive.");
-        }
+        } 
+        double newBalance = getBalance() + amount;
+        setBalance(newBalance);
+        System.out.println("Deposit successful. New balance: $" + String.format("%.2f", newBalance));
     }
 
     public String getAccountDetails() {
@@ -68,7 +73,9 @@ public abstract class Account {
                "\nStudent Account: " + (isStudent ? "Yes" : "No");
     }
 
-    // Abstract methods like withdraw. Not all account types withdraw the same way so this will need to be overridden
+    /*--------------------------------------------------------------------------------
+                                      ABSTRACT METHODS
+    --------------------------------------------------------------------------------*/
     
     public abstract void withdraw(double amount); 
     

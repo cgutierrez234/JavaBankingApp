@@ -14,14 +14,23 @@ public class CheckingAccount extends Account {
         super(accountNumber, accountOwner, balance, isStudent, blockedFromWithdrawal);
     }
 
-    //METHODS
+    /*--------------------------------------------------------------------------------
+                                       METHODS
+    --------------------------------------------------------------------------------*/
 
-    // Override withdraw to fit CheckingAccount's needs
-
-
-    /*  This method sets projectedBalance which will be the current balance minus the withdraw amount. Checks to see if the customer is locked out of their account for reaching their overdraft
-        limit. If they are, it let's them know that they are and exits out of withdraw. If their balance is less than zero but higher than the overdraft limit, it applies an overdraft fee of $35.
-        Finally if it is a normal withdraw, it subtracts the amount and moves on. */
+    /*
+     * Handles withdrawals for CheckingAccount, including overdraft and lockout rules.
+     *
+     * - Calculates a projected balance based on the withdrawal amount.
+     * - If the account is currently locked, notifies the user and exits early.
+     * - If the withdrawal causes the balance to go negative but remains within the allowed overdraft limit,
+     *   applies a $35 overdraft fee and adjusts the balance accordingly.
+     * - If the withdrawal exceeds the overdraft limit:
+     *   - Locks the account
+     *   - Tracks the negative balance (as a positive value internally)
+     *   - Notifies the user of the lockout and their current negative balance
+     * - If the withdrawal is valid and does not trigger any overdraft rules, it processes normally.
+     */
 
     @Override
     public void withdraw(double amount) {
@@ -44,14 +53,31 @@ public class CheckingAccount extends Account {
                 setBalance(projectedBalance); // This is the simple withdrawal
             }
         }
+    
+    /*
+    * Handles deposits for a CheckingAccount with overdraft rules.
+    *
+    * - First, validates that the deposit amount is positive; throws an error if not.
+    * - Then calculates the new balance by adding the deposit to the current balance.
+    * - If the new balance meets or exceeds the unlock threshold ($25), it:
+    *   - Unlocks the account
+    *   - Resets the tracked negative balance to 0
+    *   - Notifies the customer of successful unlocking
+    * - If the new balance is still below the unlock threshold:
+    *   - Reduces the tracked negative balance by the deposit (note: negativeBalance is stored as a positive value)
+    *   - Keeps the account locked
+    *   - Notifies the customer that further deposits are needed to unlock the account
+    */
 
+    @Override
     public void deposit(double amount) {
-        double newBalance = getBalance() + amount;
-        setBalance(newBalance);
-
+        
         if(amount <= 0) {
             throw new IllegalArgumentException("Your deposit must be a dollar amount above 0.");
         }
+
+        double newBalance = getBalance() + amount;
+        setBalance(newBalance);
 
         if(newBalance >= amountToUnlockAcct) {
             System.out.println("Your account balance is now " + String.format("%.2f", newBalance) + ". Your account has been unlocked. Thank you.");
@@ -60,7 +86,7 @@ public class CheckingAccount extends Account {
         } else {
             negativeBalance = Math.max(0, negativeBalance - amount);
             System.out.println("Thank you for your deposit. However, your balance remains below the $25 minimum required to unlock withdrawals. Please deposit funds to reach the minimum. Your current balance is " +
-            negativeBalance + ".");
+            String.format("%.2f", newBalance) + ".");
             setBlockedFromWithdrawal(true);
         }
     }

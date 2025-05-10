@@ -9,8 +9,8 @@ public class SavingsAccount extends Account {
     private LocalDate currentMonth = LocalDate.now().withDayOfMonth(1); //<-- This variable sets the overall check for the month. It is enduring
 
     // Constructor
-    public SavingsAccount(String accountNumber, String accountOwner, double balance, boolean isStudent, boolean blockedFromWithdrawal) {
-        super(accountNumber, accountOwner, balance, isStudent, blockedFromWithdrawal);
+    public SavingsAccount(String accountNumber, String accountOwner, double balance,boolean blockedFromWithdrawal) {
+        super(accountNumber, accountOwner, balance, blockedFromWithdrawal);
     }
 
     /*--------------------------------------------------------------------------------
@@ -74,7 +74,6 @@ public class SavingsAccount extends Account {
         return "Account Number: " + getAccountNumber() +
                "\nOwner: " + getAccountOwner() +
                "\nBalance: $" + String.format("%.2f", getBalance()) +
-               "\nStudent Account: " + (getIsStudent() ? "Yes" : "No") +
                "\n\nWithdrawal limit: " + (withdrawalLimit) +
                "\nRemaining withdrawals this month: " +(withdrawalLimit - withdrawalsThisMonth);
     }

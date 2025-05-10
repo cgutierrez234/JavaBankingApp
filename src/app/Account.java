@@ -5,15 +5,13 @@ public abstract class Account {
     private String accountNumber;
     private String accountOwner;
     private double balance;
-    private boolean isStudent;
     private boolean blockedFromWithdrawal;
 
     // Constructor
-    public Account(String accountNumber, String accountOwner, double balance, boolean isStudent, boolean blockedFromWithdrawal) {
+    public Account(String accountNumber, String accountOwner, double balance, boolean blockedFromWithdrawal) {
         this.accountNumber = accountNumber;
         this.accountOwner = accountOwner;
         this.balance = balance;
-        this.isStudent = isStudent;
         this.blockedFromWithdrawal = blockedFromWithdrawal;
     }
 
@@ -31,10 +29,6 @@ public abstract class Account {
 
     public double getBalance() {
         return balance;
-    }
-
-    public boolean getIsStudent() {
-        return isStudent;
     }
 
     public boolean getBlockedFromWithdrawal() {
@@ -69,8 +63,7 @@ public abstract class Account {
     public String getAccountDetails() {
         return "Account Number: " + accountNumber +
                "\nOwner: " + accountOwner +
-               "\nBalance: $" + String.format("%.2f", balance) +
-               "\nStudent Account: " + (isStudent ? "Yes" : "No");
+               "\nBalance: $" + String.format("%.2f", balance);
     }
 
     /*--------------------------------------------------------------------------------

@@ -9,9 +9,9 @@ public class CheckingAccount extends Account {
     
     //Constructor
 
-    public CheckingAccount(String accountNumber, String accountOwner, double balance, boolean isStudent, boolean blockedFromWithdrawal) {
+    public CheckingAccount(String accountNumber, String accountOwner, double balance, boolean blockedFromWithdrawal) {
     
-        super(accountNumber, accountOwner, balance, isStudent, blockedFromWithdrawal);
+        super(accountNumber, accountOwner, balance, blockedFromWithdrawal);
     }
 
     /*--------------------------------------------------------------------------------
@@ -89,6 +89,5 @@ public class CheckingAccount extends Account {
             String.format("%.2f", newBalance) + ".");
             setBlockedFromWithdrawal(true);
         }
-    }
-    
+    }   
 }

@@ -6,7 +6,7 @@ public class SavingsAccount extends Account {
 
     private static final int withdrawalLimit = 3;
     private int withdrawalsThisMonth = 0;
-    private LocalDate currentMonth = LocalDate.now().withDayOfMonth(1); //<-- This variable sets the overall check for the month. It is enduring
+    private LocalDate currentMonth = LocalDate.now().withDayOfMonth(1); //<-- This variable sets the overall check for the month. It is enduring!
 
     // Constructor
     public SavingsAccount(String accountNumber, String accountOwner, double balance,boolean blockedFromWithdrawal) {

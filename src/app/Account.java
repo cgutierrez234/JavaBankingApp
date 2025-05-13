@@ -66,6 +66,12 @@ public abstract class Account {
                "\nBalance: $" + String.format("%.2f", balance);
     }
 
+    public void validateAmount(double amount) {
+        if(amount <= 0) {
+            throw new IllegalArgumentException("The amount must be greater than 0");
+        }
+    }
+
     /*--------------------------------------------------------------------------------
                                       ABSTRACT METHODS
     --------------------------------------------------------------------------------*/

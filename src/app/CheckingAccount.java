@@ -35,6 +35,8 @@ public class CheckingAccount extends Account {
     @Override
     public void withdraw(double amount) {
 
+        validateAmount(amount);
+
         double projectedBalance = getBalance() - amount;
 
         if(getBlockedFromWithdrawal()) {
@@ -72,9 +74,7 @@ public class CheckingAccount extends Account {
     @Override
     public void deposit(double amount) {
         
-        if(amount <= 0) {
-            throw new IllegalArgumentException("Your deposit must be a dollar amount above 0.");
-        }
+        validateAmount(amount);
 
         double newBalance = getBalance() + amount;
         setBalance(newBalance);
@@ -90,4 +90,13 @@ public class CheckingAccount extends Account {
             setBlockedFromWithdrawal(true);
         }
     }   
+
+    @Override
+    public String getAccountDetails() {
+        String status = getBlockedFromWithdrawal() ? "Account Locked(Overdraft Exceeded)" : "Active";
+        return "Account Number: " + getAccountNumber() +
+               "\nOwner: " + getAccountOwner() +
+               "\nBalance: $" + String.format("%.2f", getBalance()) +
+               "\nAccount Status: " + status;
+    }
 }

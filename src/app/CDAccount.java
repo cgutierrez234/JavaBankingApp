@@ -70,10 +70,12 @@ public class CDAccount extends Account {
      *
      * @param amount The amount the customer wishes to withdraw.
      */
-    
+
     @Override
     public void withdraw(double amount) {
         double balance = getBalance();
+
+        validateAmount(amount);
 
         checkIfMatured();
 
@@ -92,5 +94,13 @@ public class CDAccount extends Account {
             setBalance(balance - amount);
             System.out.println("Withdrawal successful. Your remaining balance is: " + getBalance()); 
         }
+    }
+
+    @Override
+    public String getAccountDetails() {
+        return "Account Number: " + getAccountNumber() +
+               "\nOwner: " + getAccountOwner() +
+               "\nBalance: $" + String.format("%.2f", getBalance()) +
+               "\nAccount Status: " + (isMatured ? "Matured" : "Not Matured");
     }
 }

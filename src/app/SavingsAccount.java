@@ -36,9 +36,8 @@ public class SavingsAccount extends Account {
 
     @Override
     public void withdraw(double amount) {
-        if(amount <= 0) {
-            throw new IllegalArgumentException("Withdrawal amount must be greater than 0 in increments of 20.");
-        }
+        
+        validateAmount(amount);
 
         // Set "now" to the first day of the month
         LocalDate now = LocalDate.now().withDayOfMonth(1);
@@ -77,7 +76,4 @@ public class SavingsAccount extends Account {
                "\n\nWithdrawal limit: " + (withdrawalLimit) +
                "\nRemaining withdrawals this month: " +(withdrawalLimit - withdrawalsThisMonth);
     }
-    
-
-    
 }

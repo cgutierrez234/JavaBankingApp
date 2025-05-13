@@ -27,9 +27,8 @@ public class StudentCheckingAccount extends CheckingAccount {
 
     @Override 
     public void withdraw(double amount) {
-        if(amount <= 0) {
-            throw new IllegalArgumentException("Withdrawal amount must be greater than 0 in increments of 20.");
-        }
+        
+        validateAmount(amount);
 
         if(getBalance() < amount) {
             System.out.println("Withdrawal denied: Insufficient funds. You may not incur overdraft fees with your Student checking Account");
@@ -40,6 +39,12 @@ public class StudentCheckingAccount extends CheckingAccount {
         setBalance(currentBalance);
         System.out.println("Withdrawal successful. Your current balance is: " + currentBalance);
     }
+
+ /*
+ * This class inherits the deposit method from the Account superclass without modification.
+ * StudentCheckingAccount does not override deposit behavior, as student accounts follow 
+ * the same deposit rules as standard accounts.
+ */
 }
 
 

@@ -60,7 +60,6 @@ public class BankingGui {
     public void showPanel(String name) {
         cardLayout.show(cardPanel, name);
     }
-
 }
 
   

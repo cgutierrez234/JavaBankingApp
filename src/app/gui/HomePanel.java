@@ -50,9 +50,9 @@ public class HomePanel extends JPanel {
         JButton createAccountButton = new JButton("Create Account");
         JButton loginButton = new JButton("Login");
 
-        Font buttonFont = new Font("SansSerif", Font.PLAIN, 14);
-        createAccountButton.setFont(buttonFont);
-        loginButton.setFont(buttonFont);
+        //Font buttonFont = new Font("SansSerif", Font.PLAIN, 14);
+        //createAccountButton.setFont(buttonFont);
+        //loginButton.setFont(buttonFont);
 
         gbc.gridx = 0;
         buttonPanel.add(createAccountButton,gbc);

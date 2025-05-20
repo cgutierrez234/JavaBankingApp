@@ -3,6 +3,15 @@ package app.gui;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+ * LoginPanel.java
+ *
+ * This panel provides a login interface for users to enter their credentials.
+ * It includes fields for email and password input, as well as Login and Cancel buttons.
+ * Upon integration, the Cancel button should route the user back to the Home screen,
+ * and the Login button will validate credentials to transition to the Logged-In options.
+ */
+
 public class LoginPanel extends JPanel {
 
     public LoginPanel() {

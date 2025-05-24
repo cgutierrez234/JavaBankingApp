@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /*
- * LoggedInOptions.java
+ * LoggedInOptionsPanel.java
  *
  * This panel serves as the main dashboard for authenticated users,
  * presenting navigation options such as viewing account details,
@@ -14,9 +14,9 @@ import java.awt.*;
  * for all user-initiated banking operations.
  */
 
-public class LoggedInOptions extends JPanel {
+public class LoggedInOptionsPanel extends JPanel {
 
-    public LoggedInOptions(BankingGui gui) {
+    public LoggedInOptionsPanel(BankingGuiMainPanel gui) {
 
         setLayout(new BorderLayout());
 
@@ -24,24 +24,37 @@ public class LoggedInOptions extends JPanel {
         optionsLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
         optionsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(optionsLabel, BorderLayout.NORTH);
+        JPanel optionsLabelPanel = new JPanel();
+        optionsLabelPanel.setLayout(new BoxLayout(optionsLabelPanel, BoxLayout.Y_AXIS));
+        optionsLabelPanel.setBorder(BorderFactory.createEmptyBorder(30, 10, 20, 10));
+        optionsLabelPanel.add(optionsLabel);
+
+        add(optionsLabelPanel, BorderLayout.NORTH);
 
         JButton accountDetailsButton = new JButton("Account Details");
         JButton depositButton = new JButton("Deposit");
         JButton withdrawButton = new JButton("Withdraw");
         JButton transferButton = new JButton("Transfer funds");
         JButton logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(e -> gui.showPanel("home"));
 
-        JPanel optionButtonPanel = new JPanel();
-        optionButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10)); // hgap is horizontal gap and vgap is vertical gap. There will be 10 pixels of space between buttons, side to side
-        
+       
+        JPanel optionButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));  // hgap is horizontal gap and vgap is vertical gap. There will be 10 pixels of space between buttons, side to side
         optionButtonPanel.add(accountDetailsButton);
         optionButtonPanel.add(depositButton);
         optionButtonPanel.add(withdrawButton);
         optionButtonPanel.add(transferButton);
         optionButtonPanel.add(logoutButton);
 
-        add(optionButtonPanel, BorderLayout.CENTER);
+        //Wrap the button panel in vertical BoxLayout for centering
+        JPanel verticalWrapper = new JPanel();
+        verticalWrapper.setLayout(new BoxLayout(verticalWrapper, BoxLayout.Y_AXIS));
+        verticalWrapper.add(Box.createVerticalGlue());
+        verticalWrapper.add(optionButtonPanel);
+        verticalWrapper.add(Box.createVerticalGlue());
+
+
+        add(verticalWrapper, BorderLayout.CENTER);
         
     }
     

@@ -20,14 +20,14 @@ package app.gui;
  * (e.g., navigating between HomePanel, LoginPanel, AccountDashboard).
  */
 
-public class BankingGui {
+public class BankingGuiMainPanel {
 
     private JFrame frame;
     private JPanel cardPanel;
     private CardLayout cardLayout;
 
     //CONSTRUCTOR 
-    public BankingGui() {
+    public BankingGuiMainPanel() {
         createGui();
     }
 
@@ -40,8 +40,9 @@ public class BankingGui {
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
-        cardPanel.add(new HomePanel(), "home");
-        // Future panels will go here to shuffle through
+        cardPanel.add(new HomePanel(this), "home");
+        cardPanel.add(new LoginPanel(this), "login");
+        cardPanel.add(new LoggedInOptionsPanel(this), "loggedIn");
         // cardPanel.add(LoginPanel(), "login");
         // cardPanel.add(CreateAccountPanel(), "create");
 

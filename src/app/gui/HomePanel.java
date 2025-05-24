@@ -19,7 +19,7 @@ import java.awt.*;
 
 public class HomePanel extends JPanel {
     
-        public HomePanel() {
+        public HomePanel(BankingGuiMainPanel gui) {
         
         setLayout(new BorderLayout());
 
@@ -48,7 +48,9 @@ public class HomePanel extends JPanel {
         gbc.gridy = 0;
 
         JButton createAccountButton = new JButton("Create Account");
+
         JButton loginButton = new JButton("Login");
+        loginButton.addActionListener(e -> gui.showPanel("login") );
 
         //Font buttonFont = new Font("SansSerif", Font.PLAIN, 14);
         //createAccountButton.setFont(buttonFont);

@@ -14,7 +14,7 @@ import java.awt.*;
 
 public class LoginPanel extends JPanel {
 
-    public LoginPanel() {
+    public LoginPanel(BankingGuiMainPanel gui) {
 
         setLayout(new BorderLayout());
 
@@ -22,7 +22,12 @@ public class LoginPanel extends JPanel {
         loginLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
         loginLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(loginLabel, BorderLayout.NORTH);
+        JPanel loginLabelPanel = new JPanel();
+        loginLabelPanel.setLayout(new BoxLayout(loginLabelPanel, BoxLayout.Y_AXIS));
+        loginLabelPanel.setBorder(BorderFactory.createEmptyBorder(30, 10, 20, 10));
+        loginLabelPanel.add(loginLabel);
+
+        add(loginLabelPanel, BorderLayout.NORTH);
 
         JPanel formPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -34,6 +39,7 @@ public class LoginPanel extends JPanel {
         JTextField userPassField = new JPasswordField(20);
 
         JButton loginButton = new JButton("Login");
+        loginButton.addActionListener(e -> gui.showPanel("loggedIn"));
         JButton cancelButton = new JButton("Cancel"); // <--- this button needs to be hooked up to an action listener that displays the homescreen again
 
         // Add insets or padding if you will

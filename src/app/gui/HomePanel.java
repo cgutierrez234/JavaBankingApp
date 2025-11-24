@@ -48,8 +48,11 @@ public class HomePanel extends JPanel {
         gbc.gridy = 0;
 
         JButton createAccountButton = new JButton("Create Account");
+        createAccountButton.setFocusable(false);
+        createAccountButton.addActionListener(e -> gui.showPanel("create"));
 
         JButton loginButton = new JButton("Login");
+        loginButton.setFocusable(false);
         loginButton.addActionListener(e -> gui.showPanel("login") );
 
         //Font buttonFont = new Font("SansSerif", Font.PLAIN, 14);

@@ -1,4 +1,4 @@
-package app;
+package app.account;
 
 public abstract class Account {
 

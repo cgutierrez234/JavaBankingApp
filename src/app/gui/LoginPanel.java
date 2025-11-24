@@ -40,10 +40,13 @@ public class LoginPanel extends JPanel {
 
         JButton loginButton = new JButton("Login");
         loginButton.addActionListener(e -> gui.showPanel("loggedIn"));
-        JButton cancelButton = new JButton("Cancel"); // <--- this button needs to be hooked up to an action listener that displays the homescreen again
+
+        JButton cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener(e -> gui.showPanel("home"));
+        
 
         // Add insets or padding if you will
-        gbc.insets = new Insets(5,5,5,5); // top, left, bottom, right
+        gbc.insets = new Insets(5,5,5,5); 
 
         // GRIDX = COLUMN -----> MOVES TO THE RIGHT TO DICTATE COLUMN//// GRIDY = ROW MOVES DOWN TO DICTATE ROW
 

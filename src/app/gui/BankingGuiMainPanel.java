@@ -3,6 +3,9 @@ package app.gui;
  import javax.swing.*;
  import java.awt.*;
 
+import app.user.UserManager;
+
+
  /*
  * BankingGui is the main window controller for the JavaBankingApp.
  * It initializes the application frame and serves as the entry point
@@ -25,6 +28,7 @@ public class BankingGuiMainPanel {
     private JFrame frame;
     private JPanel cardPanel;
     private CardLayout cardLayout;
+    private UserManager userManager;
 
     //CONSTRUCTOR 
     public BankingGuiMainPanel() {
@@ -43,8 +47,7 @@ public class BankingGuiMainPanel {
         cardPanel.add(new HomePanel(this), "home");
         cardPanel.add(new LoginPanel(this), "login");
         cardPanel.add(new LoggedInOptionsPanel(this), "loggedIn");
-        // cardPanel.add(LoginPanel(), "login");
-        // cardPanel.add(CreateAccountPanel(), "create");
+        cardPanel.add(new CreateAccountPanel(this, userManager),"create");
 
         frame.add(cardPanel);
         frame.setVisible(true);
@@ -54,9 +57,6 @@ public class BankingGuiMainPanel {
      * Switches the visible panel inside the CardLayout by name.
      * @param name The name of the panel to show (e.g., "home", "login")
      */
-
-     /* NOT USED YET . . . WILL BE USED WHEN I WIRE THE LOGIN OR CREATE ACCOUNT BUTTONS. THE ACTION LISTENER WILL
-        TRIGGER THIS METHOD TO SHOW A DIFFERENT PANEL LIKE "login" or "create" */ 
 
     public void showPanel(String name) {
         cardLayout.show(cardPanel, name);
